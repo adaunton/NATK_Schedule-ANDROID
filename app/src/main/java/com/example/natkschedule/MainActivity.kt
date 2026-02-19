@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.48:5001/") // Твой IP
+            .baseUrl("http://192.168.0.48:5001/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(ApiService::class.java)
@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Главный экран с нижней навигацией
+
 @Composable
 fun MainScreen(api: ApiService) {
     var selectedTab by remember { mutableIntStateOf(0) }
