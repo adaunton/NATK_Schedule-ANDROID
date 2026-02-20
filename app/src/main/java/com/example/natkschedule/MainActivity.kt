@@ -176,22 +176,41 @@ fun LessonItem(item: ScheduleItem) {
         2 -> "10:20 - 12:00"
         3 -> "12:30 - 14:10"
         4 -> "14:20 - 16:00"
-        else -> "--:--"
+        else -> "00:00"
     }
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(2.dp)
+        elevation = CardDefaults.cardElevation(3.dp)
     ) {
-        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text(item.lessonNumber.toString(), fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color(0xFF6200EE))
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Surface(
+                color = PrimaryColor.copy(alpha = 0.1f),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    item.lessonNumber.toString(),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Black,
+                    color = PrimaryColor
+                )
+            }
             Spacer(modifier = Modifier.width(16.dp))
             Column {
-                Text(time, fontSize = 12.sp, color = Color.Gray)
-                Text(item.subjectName, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
-                Text("каб. ${item.classroomNumber} • ${item.teacherName}", fontSize = 13.sp, color = Color.DarkGray)
+                Text(time, fontSize = 12.sp, color = Color.Gray, letterSpacing = 1.sp)
+                Text(item.subjectName, fontSize = 17.sp, fontWeight = FontWeight.Bold, color = Color(0xFF1F2937))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.size(14.dp), tint = Color.Gray)
+                    Text(" ${item.teacherName}", fontSize = 13.sp, color = Color.DarkGray)
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text("каб. ${item.classroomNumber}", fontSize = 13.sp, fontWeight = FontWeight.Medium, color = PrimaryColor)
+                }
             }
         }
     }
