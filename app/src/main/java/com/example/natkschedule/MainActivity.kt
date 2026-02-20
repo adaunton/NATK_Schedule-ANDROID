@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -135,11 +136,13 @@ fun ScheduleScreen(api: ApiService) {
             shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
             Text(
-                "Расписание НАТК",
+                "РАСПИСАНИЕ НАТК",
                 modifier = Modifier.padding(20.dp),
                 color = Color.White,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.ExtraBold
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Black, // Самый жирный шрифт
+                letterSpacing = 2.sp,         // Разрыв между буквами (стиль капсом)
+                fontFamily = FontFamily.SansSerif // Классический строгий шрифт
             )
         }
 
