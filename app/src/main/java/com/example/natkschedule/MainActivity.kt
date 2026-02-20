@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 val PrimaryColor = Color(0xFF2563EB)
 val SecondaryColor = Color(0xFFF8FAFC)
 val AccentColor = Color(0xFF1E40AF)
@@ -87,10 +88,28 @@ fun MainScreen(api: ApiService) {
 
 @Composable
 fun PlaceholderScreen(title: String) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier.fillMaxSize().background(SecondaryColor),
+        contentAlignment = Alignment.Center
+    ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = title, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-            Text(text = "", color = Color.Gray)
+
+            val icon = if (title == "Избранное") Icons.Default.Favorite else Icons.Default.Person
+
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(80.dp),
+                tint = Color.LightGray
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Раздел «$title»",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.DarkGray
+            )
+
         }
     }
 }
