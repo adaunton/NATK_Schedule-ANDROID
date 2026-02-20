@@ -116,7 +116,7 @@ fun ScheduleScreen(api: ApiService) {
             shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
             Text(
-                "Расписание НАПК",
+                "Расписание НАТК",
                 modifier = Modifier.padding(20.dp),
                 color = Color.White,
                 fontSize = 22.sp,
