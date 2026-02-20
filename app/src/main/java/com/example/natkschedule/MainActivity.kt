@@ -25,13 +25,15 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+val PrimaryColor = Color(0xFF2563EB)
+val SecondaryColor = Color(0xFFF8FAFC)
+val AccentColor = Color(0xFF1E40AF)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.48:5001/")
+            .baseUrl("http://192.168.0.48:5001/") // Твой IP
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(ApiService::class.java)
@@ -44,7 +46,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+// Главный экран с нижней навигацией
 @Composable
 fun MainScreen(api: ApiService) {
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -107,8 +109,19 @@ fun ScheduleScreen(api: ApiService) {
 
     val groupedSchedule = schedule.groupBy { it.lessonDate }.toSortedMap()
     Column(modifier = Modifier.fillMaxSize().background(Color(0xFFF3F4F6))) {
-        Surface(modifier = Modifier.fillMaxWidth(), color = Color(0xFF6200EE), shadowElevation = 4.dp) {
-            Text("НАПК Расписание", modifier = Modifier.padding(16.dp), color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            color = PrimaryColor,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+        ) {
+            Text(
+                "Расписание НАПК",
+                modifier = Modifier.padding(20.dp),
+                color = Color.White,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.ExtraBold
+            )
         }
 
         // Выбор группы (уже работает корректно)
